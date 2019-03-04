@@ -48,34 +48,35 @@ import {SketchPicker} from 'react-color';
     }
 
 
-    toggleColorPicker(e){//works
+    toggleColorPicker(){//works
+
+
+
+
+
+
+    }
+
+    handleClick(){
+        if(!this.state.isHidden){//is it not visible, then it will be after this function is called so addeventlistener
+            document.addEventListener('click', this.handleOutsideClick , false);
+        }else{
+            document.removeEventListener('click', this.handleOutsideClick, false);
+        }
 
         this.setState(prevState => ({
             isHidden: !prevState.isHidden,  //toggle for hiding this color picker
         }));
 
-        if(!this.state.isHidden){//is it visible? yes then
-            document.addEventListener('click', this.handleOutsideClick , false);
-        }else{
-            document.removeEventListener('click', this.handleOutsideClick, false);
-        }
-
-    }
-
-    handleClick(){
-        if(!this.state.isHidden){//is it visible? yes then
-            document.addEventListener('click', this.handleOutsideClick , false);
-        }else{
-            document.removeEventListener('click', this.handleOutsideClick, false);
-        }
     }
 
     handleOutsideClick(e){  //FIND a way to get the click event listener from the highest level
-        if(this.node.contains(e.target)){
+        
+        if(this.node.isSameNode(e.target)){
             return;
         }
 
-        this.toggleColorPicker();
+        this.handleClick();
     }
 
 
@@ -91,11 +92,11 @@ import {SketchPicker} from 'react-color';
         console.log("RGB", tempRGB);
 
         return (
-            <span class='fit palette-brick' ref={node => { this.node = node; }}>
-            <ColorBlock color={this.state.rgb} size={this.state.size} onClick={(e) => this.toggleColorPicker(e)}> </ColorBlock>
+            <span class='fit palette-brick' >
+            <ColorBlock color={this.state.rgb} size={this.state.size} onClick={(e) => this.handleClick()}> </ColorBlock>
 
              
-            <div class='pallete-brick-sketchPicker' >
+            <div class='pallete-brick-sketchPicker' ref={node => { this.node = node; }}>
             {!this.state.isHidden && <SketchPicker color={tempRGB}/>}   
             </div>
         
