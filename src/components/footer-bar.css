@@ -1,0 +1,10 @@
+.footer-bar {
+    position: static;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #FFFFFF;
+    border: 1px solid #666666; 
+    color: rgb(0, 0, 0);
+    text-align: center;
+  }

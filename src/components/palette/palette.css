@@ -1,0 +1,75 @@
+
+.color-block:focus{
+    
+}
+
+.icon{
+
+}
+
+.fit{
+    display:block;
+}
+
+.color-block-tools>img{
+    margin:0;
+}
+
+.color-block-tools > h4{
+    margin:3px;
+}
+
+.palette-brick{
+    position: relative;
+    padding: 0;
+    width: 20%;
+    float: left;
+    max-width: fit-content;
+}
+
+.palette-creator{
+    width: 100%;
+    display:inline-block;
+    max-width: fit-content;
+}
+
+.center{
+    text-align: center;
+    margin: 0 auto;
+    
+}
+  
+.palette-creator::after {
+clear: both;
+}
+
+.pallete-brick-sketchPicker{
+    position: absolute;
+    right: 5px;
+    top: 0px;
+    z-index:4;
+} 
+
+/*
+@media only screen and (min-width: 640px) {
+
+
+    .palette-brick{
+        width:20%;
+        height:20%;
+    }
+
+    .color-block{
+        width:20%;
+        height:20%;
+    }
+
+    .color-block-tools{
+        width:20%;
+        height:20%;
+    }
+}
+
+*/
+
+

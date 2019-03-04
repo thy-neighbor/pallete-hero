@@ -1,0 +1,25 @@
+.form{
+    border: 1px solid black;
+    border-radius: 30px;
+    width: fit-content;
+    padding: 50px 50px 80px 50px;
+    display: block;
+    margin: 0 auto;
+}
+
+
+.form-input{
+    margin: 40px;
+}
+
+.form-input input{
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+input::-webkit-input-placeholder {
+    text-align: center;
+ }
+
