@@ -18,7 +18,8 @@ import {SketchPicker} from 'react-color';
             rgb:props.rgb,
             size:props.size,
             isHidden:"true",
-            eventTarget:null
+            eventTarget:null,
+            mouseClient:{x:null,y:null}
         };
 
         // This binding is necessary to make `this` work in the callback
@@ -57,8 +58,9 @@ import {SketchPicker} from 'react-color';
 
     }
 
-    handleClick(){
-        if(!this.state.isHidden){//is it not visible, then it will be after this function is called so addeventlistener
+    handleClick(e){
+        
+        if(this.state.isHidden){
             document.addEventListener('click', this.handleOutsideClick , false);
         }else{
             document.removeEventListener('click', this.handleOutsideClick, false);
@@ -66,6 +68,7 @@ import {SketchPicker} from 'react-color';
 
         this.setState(prevState => ({
             isHidden: !prevState.isHidden,  //toggle for hiding this color picker
+    //        mouseClient:{x:e.clientX,y:e.clientY}
         }));
 
     }
@@ -86,18 +89,23 @@ import {SketchPicker} from 'react-color';
             g:this.state.rgb[1],
             b:this.state.rgb[2]
         }
-
+/*
+        let mousePos={
+            left:`${this.state.mouseClient.x} px`, 
+            top:`${this.state.mouseClient.y} px`
+        }
+*/
 
 
         console.log("RGB", tempRGB);
 
         return (
             <span class='fit palette-brick' >
-            <ColorBlock color={this.state.rgb} size={this.state.size} onClick={(e) => this.handleClick()}> </ColorBlock>
+            <ColorBlock color={this.state.rgb} size={this.state.size} onClick={(e) => this.handleClick(e)}> </ColorBlock>
 
              
-            <div class='pallete-brick-sketchPicker' ref={node => { this.node = node; }}>
-            {!this.state.isHidden && <SketchPicker color={tempRGB}/>}   
+            <div class='pallete-brick-sketchPicker' ref={node => { this.node = node; }} >
+            {!this.state.isHidden && <SketchPicker color={tempRGB} />}   
             </div>
         
             <ColorBlockTools colorCode={this.rgbToHex(this.state.rgb)}></ColorBlockTools>
