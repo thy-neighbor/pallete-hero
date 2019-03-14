@@ -23,10 +23,9 @@ import {SketchPicker} from 'react-color';
         };
 
         // This binding is necessary to make `this` work in the callback
-        this.toggleColorPicker = this.toggleColorPicker.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleOutsideClick = this.handleOutsideClick.bind(this);
-
+        this.onChange = this.onChange.bind(this);
     }
 
     rgbToHex(inputRgb){
@@ -48,17 +47,7 @@ import {SketchPicker} from 'react-color';
 
     }
 
-
-    toggleColorPicker(){//works
-
-
-
-
-
-
-    }
-
-    handleClick(e){
+    handleClick(e){ //TOGGLE COLOR PICKER
         
         if(this.state.isHidden){
             document.addEventListener('click', this.handleOutsideClick , false);
@@ -80,6 +69,31 @@ import {SketchPicker} from 'react-color';
         }
 
         this.handleClick();
+    }
+
+    onChange(color,event){
+        let {r,g,b} = color.rgb;
+        console.log("OnChange in Pallete Brick", [r, g, b]); //goOD UP TO HERE
+
+        this.setState({
+            rgb:[r,g,b]
+        });
+
+    // color = {
+    //   hex: '#333',
+    //   rgb: {
+    //     r: 51,
+    //     g: 51,
+    //     b: 51,
+    //     a: 1,
+    //   },
+    //   hsl: {
+    //     h: 0,
+    //     s: 0,
+    //     l: .20,
+    //     a: 1,
+    //   },
+    // }
     }
 
 
@@ -105,7 +119,7 @@ import {SketchPicker} from 'react-color';
 
              
             <div class='pallete-brick-sketchPicker' ref={node => { this.node = node; }} >
-            {!this.state.isHidden && <SketchPicker color={tempRGB} />}   
+            {!this.state.isHidden && <SketchPicker color={tempRGB} onChange={this.onChange} />}   
             </div>
         
             <ColorBlockTools colorCode={this.rgbToHex(this.state.rgb)}></ColorBlockTools>
