@@ -26,7 +26,7 @@ export default function login(props){
 
                         <button type='submit'>Sign Up</button>
                     </form>
-                    <p>Don't Have an Account? Sign up Here</p>
+                    <p>Don't Have an Account? <a href="/signup">Sign up</a></p>
                 
             </div>
         </div>

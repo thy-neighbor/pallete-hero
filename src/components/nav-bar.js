@@ -19,11 +19,10 @@ export default function NavBar(props){
             </div>
             <input type="checkbox" id="nav-check"/>
             <div class="nav-links">
-                <a href="//github.io/jo_geek" >Home</a>
-                <a href="http://stackoverflow.com/users/4084003/" >My Palette</a>
-                <a href="https://in.linkedin.com/in/jonesvinothjoseph" >LinkedIn</a>
-                <a href="https://codepen.io/jo_Geek/" >Codepen</a>
-                <a href="https://jsfiddle.net/user/jo_Geek/" >JsFiddle</a>
+                <a href="/home" > Home </a>
+                <a href="/my-palettes" > My Palettes </a>
+                <a href="/login" > Login </a>
+                <a href="/signup" > Signup </a>
             </div>
         </div> 
     );

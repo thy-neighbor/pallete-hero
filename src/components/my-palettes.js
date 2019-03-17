@@ -6,6 +6,12 @@
 import React from 'react'
 
 export default function MyPalettes(props){
+
+    function myEndpoint(end){
+        window.location.href=end;
+
+    }
+
     return(
 
         <section class="my-palettes">
@@ -63,7 +69,7 @@ export default function MyPalettes(props){
                     <header>
                         <h3>Start New Palette</h3>
                     </header>
-                    <button class="btn">Start</button>
+                    <button class="btn" onClick={()=>{myEndpoint("/home")}} type="button">Start</button>
                 </div>
             </div>
         </div>
@@ -71,3 +77,4 @@ export default function MyPalettes(props){
         </section>
     );
 }
+

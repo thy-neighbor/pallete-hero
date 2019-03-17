@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import PaletteHero from './Palette-hero';
 import * as serviceWorker from './serviceWorker';
+//import {Provider} from 'react-redux';
 
 ReactDOM.render(<PaletteHero />, document.getElementById('root'));
 
