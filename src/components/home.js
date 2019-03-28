@@ -15,7 +15,7 @@ export default function Home(props){
                             <h1>Palette Maker</h1>
                         </header>
                         <PaletteCreator></PaletteCreator>
-                        <button class="btn btn-left generate">Generate</button>
+                        
                         <br/>
                         <input type='name' placeholder="Enter Name Here"></input>
                         <button>Save</button>

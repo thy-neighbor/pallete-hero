@@ -15,6 +15,7 @@ import {SketchPicker} from 'react-color';
         this.state = {
             //rgb:[45,13,200],
             //size:'150px'
+            
             rgb:props.rgb,
             size:props.size,
             isHidden:"true",
@@ -73,12 +74,10 @@ import {SketchPicker} from 'react-color';
 
     onChange(color,event){
         let {r,g,b} = color.rgb;
-        console.log("OnChange in Pallete Brick", [r, g, b]); //goOD UP TO HERE
-
-        this.setState({
-            rgb:[r,g,b]
-        });
-
+        console.log("OnChange in Pallete Brick", [r, g, b]); 
+        this.props.onColorChange([r,g,b]);
+        
+    //This is the template of the "color" aggregate
     // color = {
     //   hex: '#333',
     //   rgb: {
@@ -99,10 +98,12 @@ import {SketchPicker} from 'react-color';
 
     render(){
         let tempRGB={
-            r:this.state.rgb[0],
-            g:this.state.rgb[1],
-            b:this.state.rgb[2]
+            r:this.props.rgb[0],
+            g:this.props.rgb[1],
+            b:this.props.rgb[2]
         }
+
+
 /*
         let mousePos={
             left:`${this.state.mouseClient.x} px`, 
@@ -115,14 +116,14 @@ import {SketchPicker} from 'react-color';
 
         return (
             <span class='fit palette-brick' >
-            <ColorBlock color={this.state.rgb} size={this.state.size} onClick={(e) => this.handleClick(e)}> </ColorBlock>
+            <ColorBlock color={this.props.rgb} size={this.state.size} onClick={(e) => this.handleClick(e)}> </ColorBlock>
 
              
             <div class='pallete-brick-sketchPicker' ref={node => { this.node = node; }} >
             {!this.state.isHidden && <SketchPicker color={tempRGB} onChange={this.onChange} />}   
             </div>
         
-            <ColorBlockTools colorCode={this.rgbToHex(this.state.rgb)}></ColorBlockTools>
+            <ColorBlockTools colorCode={this.rgbToHex(this.props.rgb)}></ColorBlockTools>
             </span>
         );
     }
