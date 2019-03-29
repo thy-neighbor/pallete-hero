@@ -10,7 +10,7 @@ var session      = require('express-session');
 var path = require('path');
 const cors = require('cors');
 
-const {PORT, DATABASE_URL} = require('./Backend/config.js');
+const {PORT, DATABASE_URL} = require('./BackEnd/config.js');
 
 app.use(cors());
 //app.use(bodyParser.json());
