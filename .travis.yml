@@ -1,5 +1,11 @@
- language: node_js
- node_js: node
- cache:
-   directories:
-     - node_modules
+language: node_js
+node_js: node
+services:
+- mongodb
+deploy:
+  provider: heroku
+  api_key: a96a5dff-a5b9-4985-97f7-03171b3cfbd5
+    secure: Gdp/dhpISmWAn9ZQ9kYZbDsiU/fW3Pc5TzqzhEgs0uAMM+vm8L+SgqJ/8VazLbv/Wdx4oV6OlZ0lwrcxjjeGKFaF+33sFZ5MS3gnoJchTpsdWxNmC/FMFM3YZNHfSM9Rf9qoHkV6b4YNHbjop0mmFwApzTXfiioTThu2rXElrv0XtiWRiyab6Sgzj8ZVMI8aCU02Neg11V2Q/gC8lksFZSHGGJi5paEhLEhy6UjJ4/Ssar3jWw8k4Ls+b7N5fYhNNQwHplQyVPnM0uHRAECAJr9uibHUtmRdIPGJXJ5wNsgxySDNAiB8WdssfPrLi3hzc6VAWjuNfMWPTJtezVqE3nScGzDRED8L/r/HkUPm2u8xFqR0dtJOTpntXBxhsln5qPWCqbzLEpi/tjiXfqed4ma6p6tavx90v4onCcgRmZ3B2Lt8ToO9fhsVYsl8OVhBTiOmeOfBVqKaxCO01+6IlVEp+kZYKoJ22Zub2UhLK5nVR4cl1ODFxGJkemIWF6WJFf5RFVzd+pkI5kWUCFbysi9m0YfCMLrQ9f4+zQ0k9uGDflJ79ytsZfepepnw+r2qiuV1Bifib1AjLcwqMnmMy6eqHyp9/YZYPve35Rji+hJuEbiMNH7DrUqfIZiiU6Q146iaHOnSPa5k5mpd9/TiLCM10sdU4xbGdVj5i83ETrA=
+  app: pallete-hero
+  on:
+    repo: thy-neighbor/pallete-hero
