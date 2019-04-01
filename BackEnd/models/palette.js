@@ -10,4 +10,4 @@ let paletteSchema = new Schema({
     
 });
 
-module.exports = mongoose.model('palette',paletteSchema);
+module.exports = mongoose.model('PALETTE',paletteSchema);

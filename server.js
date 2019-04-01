@@ -10,9 +10,9 @@ var session      = require('express-session');
 var path = require('path');
 const cors = require('cors');
 
-const {PORT, DATABASE_URL} = require('./BackEnd/config.js');
+const {PORT, DATABASE_URL, CLIENT_ORIGIN} = require('./BackEnd/config.js');
 
-app.use(cors());
+app.use(cors(CLIENT_ORIGIN));
 //app.use(bodyParser.json());
 
 /* mongoose.connect('mongodb://127.0.0.1:27017/palette', { useNewUrlParser: true });
@@ -30,9 +30,11 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json({limit: '50mb', extended: true})); // get information from html forms
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
- app.get('/api/*', (req, res) => {
-   res.json({ok: true});
- });
+app.get('/api/*', (req, res) => {
+  res.json({ok: true});
+});
+
+require('./BackEnd/routes.js')(app); //load our routes and pass in our app and passport already configured
 
 // closeServer needs access to a server object, but that only
 // gets created when `runServer` runs, so we declare `server` here

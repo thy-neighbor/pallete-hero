@@ -6,18 +6,33 @@ var data = {
 	input : [[44,43,44],[90,83,82],"N","N","N"]
 } */
 
+/*API Access - http://colormind.io/api-access/*/
+const url="http://colormind.io/api/";
+var data = {
+	model : "default",
+	input : ["N","N","N","N","N"]
+}
+
+var http = new XMLHttpRequest();
+var palette;
+        
+
+http.onreadystatechange = function() {
+    console.log(http.readyState,http.status);
+    if(http.readyState == 4 && http.status == 200) {
+        console.log("HTTP>ONREADYSTATECHANGE");
+        palette = JSON.parse(http.responseText).result;
+    }
+}
+http.open("POST", url, false);
+http.send(JSON.stringify(data));
+//console.log("PALETTTEEE!!",palette);
 
 const initialState = {
-    palette:[
-        [66,100,66],
-        [0,0,150],
-        [190,100,50],
-        [30,16,30],
-        [143,0,150]
-        ]
+    palette
 };
 
-
+//my reducers are gonna just post to the endpoints to save things to the data base
 export const paletteHeroReducer = (state=initialState, action) =>{
      if(action.type === SET_PALETTE){
         const rgb = state.palette.map((item, i) => {
