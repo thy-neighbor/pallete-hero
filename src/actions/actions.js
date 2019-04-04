@@ -14,6 +14,13 @@ export const generatePalette = () => ({
     type: GENERATE_PALETTE,
 });
 
+export const LOCK_PALETTE_BRICK = "LOCK_PALETTE_BRICK";
+export const lockPaletteBrick = (itemId,isLocked) => ({
+    type: LOCK_PALETTE_BRICK,
+    itemId,
+    isLocked
+});
+
 export const fetchPalette = dispatch => {
 
 }

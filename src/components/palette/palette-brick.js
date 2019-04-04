@@ -20,13 +20,16 @@ import {SketchPicker} from 'react-color';
             size:props.size,
             isHidden:"true",
             eventTarget:null,
-            mouseClient:{x:null,y:null}
+            mouseClient:{x:null,y:null},
+            isLocked:'false'
+            
         };
 
         // This binding is necessary to make `this` work in the callback
         this.handleClick = this.handleClick.bind(this);
         this.handleOutsideClick = this.handleOutsideClick.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.lockEvent = this.lockEvent.bind(this);
     }
 
     rgbToHex(inputRgb){
@@ -95,6 +98,19 @@ import {SketchPicker} from 'react-color';
     // }
     }
 
+    lockEvent(lockedBool){
+
+        this.setState({
+            isLocked: lockedBool  //toggle for hiding 
+        });
+
+        console.log("PALETTE-BRICK lock state changed", lockedBool);
+
+        this.props.onLock(lockedBool);
+
+        
+    }
+
 
     render(){
         let tempRGB={
@@ -116,14 +132,13 @@ import {SketchPicker} from 'react-color';
 
         return (
             <span class='fit palette-brick' >
-            <ColorBlock color={this.props.rgb} size={this.state.size} onClick={(e) => this.handleClick(e)}> </ColorBlock>
-
+            <ColorBlock color={this.props.rgb} size={this.state.size} onClick={(e) => this.handleClick(e)}></ColorBlock>
              
             <div class='pallete-brick-sketchPicker' ref={node => { this.node = node; }} >
             {!this.state.isHidden && <SketchPicker color={tempRGB} onChange={this.onChange} />}   
             </div>
         
-            <ColorBlockTools colorCode={this.rgbToHex(this.props.rgb)}></ColorBlockTools>
+            <ColorBlockTools colorCode={this.rgbToHex(this.props.rgb)} onLock={(lockedBool)=>{this.lockEvent(lockedBool)}}></ColorBlockTools>
             </span>
         );
     }

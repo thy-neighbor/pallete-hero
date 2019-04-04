@@ -1,4 +1,4 @@
-import {SET_PALETTE, GENERATE_PALETTE} from '../actions/actions'
+import {SET_PALETTE, GENERATE_PALETTE, LOCK_PALETTE_BRICK} from '../actions/actions'
 
 /* var url = "http://colormind.io/api/";
 var data = {
@@ -29,7 +29,8 @@ http.send(JSON.stringify(data));
 //console.log("PALETTTEEE!!",palette);
 
 const initialState = {
-    palette
+    palette,
+    myInput:["N","N","N","N","N"]
 };
 
 //my reducers are gonna just post to the endpoints to save things to the data base
@@ -59,6 +60,26 @@ export const paletteHeroReducer = (state=initialState, action) =>{
         return Object.assign({},state,{
             palette:rgb
         });
+    }else if(action.type === LOCK_PALETTE_BRICK){
+        const newLockPat = state.myInput.map((item, i) => {
+            if (i === action.itemId) {
+                console.log("INSIDE LOCK_PALETTE_BRICK, ITEM IS FOUND");
+                if(action.isLocked===true){
+                    return state.palette[i];
+                }else{
+                    return "N";
+                }     
+            } else {
+                console.log("INSIDE LOCK_PALETTE_BRICK, ITEM IS NOTFOUND");
+              return item;
+            }
+          });
+        console.log("INSIDE LOCK_PALETTE_BRICK",newLockPat);
+        
+        return Object.assign({},state,{
+            myInput:newLockPat
+        });
+
     } 
 
     return state;
