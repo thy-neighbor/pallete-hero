@@ -14,12 +14,12 @@ var data = {
 }
 
 var http = new XMLHttpRequest();
-var palette;
+var palette;    //file scope, used to recieve palette from colormind.api
         
 
 http.onreadystatechange = function() {
     console.log(http.readyState,http.status);
-    if(http.readyState == 4 && http.status == 200) {
+    if(http.readyState === 4 && http.status === 200) {
         console.log("HTTP>ONREADYSTATECHANGE");
         palette = JSON.parse(http.responseText).result;
     }
@@ -52,14 +52,23 @@ export const paletteHeroReducer = (state=initialState, action) =>{
         });
     }else if(action.type === GENERATE_PALETTE){
         console.log("YOUR IN REDUCER FOR GENERATE PALETTE");
+        
+        if(!state.myInput.includes("N")){   //if the array is full there is no need to send it to the api
+            return state;
+        }
 
-        const rgb = state.palette.map((item, i) => {
-            return([66,100,66]);
-          });
+        var newData = {
+            model : "default",
+            input : state.myInput
+        }
+
+        http.open("POST", url, false);
+        http.send(JSON.stringify(newData));
 
         return Object.assign({},state,{
-            palette:rgb
+            palette
         });
+
     }else if(action.type === LOCK_PALETTE_BRICK){
         const newLockPat = state.myInput.map((item, i) => {
             if (i === action.itemId) {

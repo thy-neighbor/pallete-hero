@@ -1,8 +1,7 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Route,
-  Redirect
+  Route
 } from 'react-router-dom';
 import './float-grid.css'
 
@@ -66,6 +65,7 @@ Action, reducer and store drills for refresher!!
 5. Initialize database and work with mock data (Thursday)
 
 6. Login/Signup/Logout Features (Friday)
+    Folow thinkful curriculum for jwt and login
 
 7. Add the rest of the CRUD actions for the user's palettes
 
