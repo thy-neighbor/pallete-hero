@@ -1,10 +1,42 @@
 //sign up form
+//I HAVE TO MAKE THIS LOOK LIKE REGISTRATION FORM
 import React from 'react'
+import {connect} from 'react-redux';
+import {Link, Redirect} from 'react-router-dom';
+import RegistrationForm from './registration-form';
 
 import './form.css'
 
-export default function Signup(){
+export function Signup(props){
+
+    if(props.loggedIn){
+        return <Redirect to="/home"/>;
+    }
+
     return(
+
+        <section class="signup">
+            <div class="row">
+                <div class="col-12">
+                        <h2>Register for Foo App</h2>
+                        <RegistrationForm/>
+                        <p>Already Have an Account? <a href="/login">Login</a> </p>
+                        <Link to="/">Login</Link>
+                    
+                </div>
+            </div>
+
+        </section>
+    );
+}
+
+const mapStateToProps = state => ({
+    loggedIn: state.auth.currentUser !== null
+});
+
+export default connect(mapStateToProps)(Signup);
+
+/*
 
     <section class="signup">
         <div class="row">
@@ -45,5 +77,4 @@ export default function Signup(){
         </div>
 
     </section>
-    );
-}
+*/

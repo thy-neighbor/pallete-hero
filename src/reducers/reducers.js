@@ -26,7 +26,7 @@ http.onreadystatechange = function() {
 }
 http.open("POST", url, false);
 http.send(JSON.stringify(data));
-//console.log("PALETTTEEE!!",palette);
+console.log("PALETTTEEE!!",palette);
 
 const initialState = {
     palette,
@@ -34,7 +34,7 @@ const initialState = {
 };
 
 //my reducers are gonna just post to the endpoints to save things to the data base
-export const paletteHeroReducer = (state=initialState, action) =>{
+export default function paletteHeroReducer(state=initialState, action) {
      if(action.type === SET_PALETTE){
         const rgb = state.palette.map((item, i) => {
             if (i === action.itemId) {
