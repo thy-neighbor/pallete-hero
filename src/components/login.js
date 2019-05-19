@@ -1,14 +1,37 @@
 import React from 'react'
-
+import {connect} from 'react-redux';
+import {Link, Redirect} from 'react-router-dom';
+import LoginForm from './login-form';
 import './form.css'
 
-export default function login(props){
+
+export function login(props){
+        // If we are logged in redirect straight to the user's dashboard
+        if (props.loggedIn) {
+            return <Redirect to="/home" />;
+        }
 
     return(
         <section class="login">
         <div class="row">
             <div class="col-12">
-                
+            <h2>Log In</h2>
+            <LoginForm />
+            <Link to="/signup">Register</Link>  
+            </div>
+        </div>
+
+    </section>
+    );
+}
+
+const mapStateToProps = state => ({
+    loggedIn: state.auth.currentUser !== null
+});
+
+export default connect(mapStateToProps)(login);
+
+/**
                     <form class='form login-form'>
                         <legend><h2>Login</h2></legend>
 
@@ -24,13 +47,7 @@ export default function login(props){
                         <input type="password" name='password' id='password' placeholder='Password' />
                         </div>
 
-                        <button type='submit'>Sign Up</button>
+                        <button type='submit'>Log in</button>
                     </form>
-                    <p>Don't Have an Account? <a href="/signup">Sign up</a></p>
-                
-            </div>
-        </div>
-
-    </section>
-    );
-}
+                    <p>Don't Have an Account? <a href="/signup">Sign up</a></p>  
+*/

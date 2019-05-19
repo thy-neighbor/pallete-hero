@@ -18,7 +18,7 @@ export function Signup(props){
         <section class="signup">
             <div class="row">
                 <div class="col-12">
-                        <h2>Register for Foo App</h2>
+                        <h2>Register</h2>
                         <RegistrationForm/>
                         <p>Already Have an Account? <a href="/login">Login</a> </p>
                         <Link to="/">Login</Link>
