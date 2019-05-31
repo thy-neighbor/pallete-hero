@@ -47,7 +47,7 @@ export class Palette extends React.Component{
         );
     }
 }
-//SEE IF YOU CAN CONSOLE LOG THIS
+
 const mapStateToProps = state => {console.log("STATE>PALETTE in PALETTE-CREATOR",state.palette); return({
   rgb:state.paletteCreator.palette
 });}

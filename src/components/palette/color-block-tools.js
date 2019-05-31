@@ -1,15 +1,18 @@
 import React from 'react'
 import './palette.css'
+import { connect } from 'react-redux';
 //<a href="https://icons8.com/icon/15454/lock-filled">Lock Filled icon by Icons8</a>
 
-export default class ColorBlockTools extends React.Component{
+export class ColorBlockTools extends React.Component{
     
     constructor(props){
         super(props);
 
         this.state = {
 
-            isLocked:false
+            //isLocked:false
+            isLocked:this.props.edit
+            //MAKE SURE THAT THIS WORKS!!!!!!!
         };
 
         this.clickLock = this.clickLock.bind(this);
@@ -29,10 +32,6 @@ export default class ColorBlockTools extends React.Component{
         this.props.onLock(lockedBool);
     }
 
-    lockEvent(){
-
-    }
-
     render(){
         return(
             <div class="color-block-tools" >
@@ -45,7 +44,13 @@ export default class ColorBlockTools extends React.Component{
 
 };
 
-
+const mapStateToProps = state => {
+    return({
+        rgb:state.paletteCreator.palette,
+        edit:state.paletteCreator.edit
+  });}
+  
+export default connect(mapStateToProps)(ColorBlockTools);
 //https://img.icons8.com/ios/26/000000/lock-2.png
 //https://img.icons8.com/ios/26/000000/lock-2-filled.png
 

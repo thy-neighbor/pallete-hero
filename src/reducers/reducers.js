@@ -1,4 +1,4 @@
-import {SET_PALETTE, GENERATE_PALETTE, LOCK_PALETTE_BRICK} from '../actions/actions'
+import {SET_PALETTE, SET_FULL_PALETTE, GENERATE_PALETTE, LOCK_PALETTE_BRICK, SET_EDIT_STATE} from '../actions/actions'
 
 /* var url = "http://colormind.io/api/";
 var data = {
@@ -30,7 +30,8 @@ console.log("PALETTTEEE!!",palette);
 
 const initialState = {
     palette,
-    myInput:["N","N","N","N","N"]
+    myInput:["N","N","N","N","N"],   //this works as lock pattern since the api takes n as unknowns, if not n the value doesnt change
+    edit:false
 };
 
 //my reducers are gonna just post to the endpoints to save things to the data base
@@ -62,13 +63,25 @@ export default function paletteHeroReducer(state=initialState, action) {
             input : state.myInput
         }
 
-        http.open("POST", url, false);
+        http.open("POST", url, true);//originally worked with 'false' async option
         http.send(JSON.stringify(newData));
 
         return Object.assign({},state,{
             palette
         });
 
+    }else if(action.type === SET_FULL_PALETTE){
+        console.log("YOUR IN REDUCER FOR SET FULL PALETTE");
+        return Object.assign({},state,{
+            palette:action.rgb,
+            myInput:action.rgb, //i need it full so they do change immediately
+            edit:true
+        });
+    }else if(action.type === SET_EDIT_STATE){
+        console.log("YOUR IN REDUCER FOR SET EDIT STATE");
+        return Object.assign({},state,{
+            edit:action.bool
+        });
     }else if(action.type === LOCK_PALETTE_BRICK){
         const newLockPat = state.myInput.map((item, i) => {
             if (i === action.itemId) {

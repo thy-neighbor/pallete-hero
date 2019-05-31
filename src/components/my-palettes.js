@@ -7,13 +7,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import MiniPalette from './palette/mini-palette';
-import {fetchProtectedData} from '../actions/protected-data';
+import PaletteList from './palette/palette-list';
+import {fetchProtectedData, fetchPaletteData} from '../actions/protected-data';
 
 export class MyPalettes extends React.Component{
 
 
     componentDidMount() {
-        this.props.dispatch(fetchProtectedData());
+        //this.props.dispatch(fetchProtectedData());
+        this.props.dispatch(fetchPaletteData());
     }
 
     myEndpoint(end){
@@ -21,9 +23,47 @@ export class MyPalettes extends React.Component{
 
     }
 
+
+
     render(){
         let testRgb=[[203, 44, 18],[247, 187, 54],[231, 226, 154],[79, 166, 120],[110, 143, 84]];
-        console.log("HERE IS the proateCTED DATA IN my-palette render :",this.props.protectedData);
+        console.log("HERE IS the PALETTE DATA IN my-palette render :",this.props.paletteData);
+        /* let listPalettes;
+        if(this.props.paletteData===''){
+            
+                listPalettes=`<div class="row inner"><div class="col-12">Saved Palettes for your Projects Pop Up Here!</div?</div>`;
+
+        }else{
+            let count=0;
+            listPalettes = this.props.paletteData.map(item,index =>{
+                let text;
+                if(count===0){
+                    count++;
+                    text=
+                        `<div class="row inner">
+                            <div class="col-4">
+                            <MiniPalette rgb={item.rgb}></MiniPalette>
+                            </div>`;
+                    
+                }else if(count===1){
+                    count++;
+                    text=
+                            `<div class="col-4">
+                            <MiniPalette rgb={item.rgb}></MiniPalette>
+                            </div>`;
+                    
+                }else if(count===2){
+                    count=0;
+                    text=
+                            `<div class="col-4">
+                            <MiniPalette rgb={item.rgb}></MiniPalette>
+                            </div>
+                        </div>`;
+                }
+                return text;
+            });
+        } */
+
         return(
 
             <section class="my-palettes">
@@ -37,41 +77,7 @@ export class MyPalettes extends React.Component{
                                 <h1>My Palettes</h1>
                             </header>
         
-                            <div class="row inner">
-                                <div class="col-4">
-                                <MiniPalette rgb={testRgb}></MiniPalette>
-                                </div>
-                                <div class="col-4">
-                                <MiniPalette rgb={testRgb}></MiniPalette>
-                                </div>
-                                <div class="col-4">
-                                <MiniPalette rgb={testRgb}></MiniPalette>
-                                </div>
-                            </div>
-        
-                            <div class="row inner">
-                                <div class="col-4">
-                                <p>[<em>placeholder for Palette maker</em>]</p>
-                                </div>
-                                <div class="col-4">
-                                <p>[<em>placeholder for Palette maker</em>]</p>
-                                </div>
-                                <div class="col-4">
-                                <p>[<em>placeholder for Palette maker</em>]</p>
-                                </div>
-                            </div>
-        
-                            <div class="row inner">
-                                <div class="col-4">
-                                <p>[<em>placeholder for Palette maker</em>]</p>
-                                </div>
-                                <div class="col-4">
-                                <p>[<em>placeholder for Palette maker</em>]</p>
-                                </div>
-                                <div class="col-4">
-                                <p>[<em>placeholder for Palette maker</em>]</p>
-                                </div>
-                            </div>
+                            {this.props.paletteData!=="" && <PaletteList paletteData={this.props.paletteData}></PaletteList>}
     
                         </div>
                     </div>
@@ -99,7 +105,8 @@ const mapStateToProps = state => {
     return {
         username: state.auth.currentUser.username,
         name: `${currentUser.firstName} ${currentUser.lastName}`,
-        protectedData: state.protectedData.data
+        protectedData: state.protectedData.data,
+        paletteData: state.protectedData.paletteData
     };
 };
 
