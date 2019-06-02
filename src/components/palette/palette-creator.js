@@ -10,18 +10,18 @@ import { setPalette, generatePalette, lockPaletteBrick } from '../../actions/act
 export class Palette extends React.Component{
 
     onColorChange(itemId,itemColor){
-        console.log("Palette-Creator.js inside of on Color Change");
-        console.log("itemId",itemId,itemColor);
+        //console.log("Palette-Creator.js inside of on Color Change");
+        //console.log("itemId",itemId,itemColor);
         this.props.dispatch(setPalette(itemId,itemColor));
     }
 
     onClickGeneratePalette(){
-        console.log("Inside onClickGeneratePalette");
+        //console.log("Inside onClickGeneratePalette");
         this.props.dispatch(generatePalette());
     }
 
     lockEvent(index,lockedBool){
-        console.log("PALETTE CREATOR #",index," isLocked is",lockedBool);
+        //console.log("PALETTE CREATOR #",index," isLocked is",lockedBool);
         //FIX the true when false dadaad, and add this to the reducer so we know what to lock
         this.props.dispatch(lockPaletteBrick(index,lockedBool));
     }
@@ -29,7 +29,7 @@ export class Palette extends React.Component{
 
 
     render(){
-        console.log("RENDER in PALETTE-CREATOR",this.props.rgb);
+        
         return(
             
             <div class="palette-creator-wrapper">
@@ -48,7 +48,7 @@ export class Palette extends React.Component{
     }
 }
 
-const mapStateToProps = state => {console.log("STATE>PALETTE in PALETTE-CREATOR",state.palette); return({
+const mapStateToProps = state => { return({
   rgb:state.paletteCreator.palette
 });}
 

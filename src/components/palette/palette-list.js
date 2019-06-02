@@ -25,13 +25,17 @@ export default class PaletteList extends React.Component{
     cleanPaletteList(list){//fills in blanks for 3x3 grid if any
         let l=list.length;
         const length= list.length;
+
         if(l<9){
             l=9-l;
         }else{
-            while(l>=9){l=l-9;}
+            //while(l>=9){l=l-9;}
+            let mult=Math.ceil(l/9); //multiple to scale up by
+            l=(9*mult)-length;
         }
         
         for(let i=0;i<l;i++){
+            if(l===0){break;}//just in case
             list[length+i]={rgb:[[0, 0, 0],[52, 52, 52],[122, 122, 122],[200, 200, 200],[255,255,255]], name:"Blank", _id:null};
         }
         return list;
@@ -48,8 +52,10 @@ export default class PaletteList extends React.Component{
 
     render(){
         let item=this.state.paletteData;
-        console.log("Here is my CORRECTED LIST",item);
         let iter=this.state.listIterator;
+        console.log("Here is my CORRECTED LIST",item, iter);
+        console.log("7+iter==",7,'+', iter,'=====',7+iter);
+        
         return(
             <section class="my-palette-col">
                 <div class="row inner">
@@ -85,8 +91,8 @@ export default class PaletteList extends React.Component{
                     <MiniPalette rgb={item[8+iter].rgb} title={item[8+iter].name} id={item[8+iter]._id}></MiniPalette>
                     </div>
                 </div>
-                <button onClick={()=> this.clickEvent(this.state.listIterator-3)}>Prev</button>
-                <button onClick={()=> this.clickEvent(this.state.listIterator+3)}>Next</button>
+                {item.length>9 && item[0+iter-9]!==undefined && <button onClick={()=> this.clickEvent(this.state.listIterator-9)}>Prev</button> }
+                {item[0+iter+9]!==undefined && <button onClick={()=> this.clickEvent(this.state.listIterator+9)}>Next</button> }
             </section>   
         );
     }

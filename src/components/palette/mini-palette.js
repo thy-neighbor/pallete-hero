@@ -21,8 +21,6 @@ export class MiniPalette extends React.Component{
 
         this.state = {
 
-            rgbArray:props.rgb,
-            id:props.id,
             up:false,  //random toggle to cause update in parent element
             duplicate:false
             
@@ -48,19 +46,19 @@ export class MiniPalette extends React.Component{
 
 
     render(){
-        console.log("RENDER in PALETTE-CREATOR",this.props.rgb);
+        console.log("RENDER in Mini-PALETTE",this.props.rgb);
         return(
             
             <div class="mini-palette-wrapper">
                 <div class="center palette-creator">
-                    {this.state.id!==null && <ExitIcon paletteId={this.state.id}></ExitIcon>}
+                    {this.props.id!==null && <ExitIcon paletteId={this.props.id}></ExitIcon>}
                     <div>
-                      <div onClick={()=>this.onClickOpenEdit(this.state.rgbArray)}>
-                          <ColorBlock color={this.state.rgbArray[0]} size="40" ></ColorBlock>
-                          <ColorBlock color={this.state.rgbArray[1]} size="40" ></ColorBlock>
-                          <ColorBlock color={this.state.rgbArray[2]} size="40" ></ColorBlock>
-                          <ColorBlock color={this.state.rgbArray[3]} size="40" ></ColorBlock>
-                          <ColorBlock color={this.state.rgbArray[4]} size="40" ></ColorBlock>
+                      <div onClick={()=>this.onClickOpenEdit(this.props.rgb)}>
+                          <ColorBlock color={this.props.rgb[0]} size="40" ></ColorBlock>
+                          <ColorBlock color={this.props.rgb[1]} size="40" ></ColorBlock>
+                          <ColorBlock color={this.props.rgb[2]} size="40" ></ColorBlock>
+                          <ColorBlock color={this.props.rgb[3]} size="40" ></ColorBlock>
+                          <ColorBlock color={this.props.rgb[4]} size="40" ></ColorBlock>
                       </div>
                       <Popup open={this.state.open} position="right center" modal onClose={()=>this.onCloseModal()} >{close => (
                           <div className="modal">
