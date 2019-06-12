@@ -2,7 +2,7 @@
 //I HAVE TO MAKE THIS LOOK LIKE REGISTRATION FORM
 import React from 'react'
 import {connect} from 'react-redux';
-import {Link, Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import RegistrationForm from './registration-form';
 
 import './form.css'
@@ -10,18 +10,16 @@ import './form.css'
 export function Signup(props){
 
     if(props.loggedIn){
-        return <Redirect to="/home"/>;
+        return <Redirect to="/creator"/>;
     }
 
     return(
 
-        <section class="signup">
-            <div class="row">
+        <section id="signup">
+            <div id="login-content" class="row">
                 <div class="col-12">
-                        <h2>Register</h2>
                         <RegistrationForm/>
-                        <p>Already Have an Account? <a href="/login">Login</a> </p>
-                        <Link to="/">Login</Link>
+                        <p>Already Have an Account? <a class="link" href="/login">Login</a> </p>
                     
                 </div>
             </div>

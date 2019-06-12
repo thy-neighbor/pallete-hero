@@ -21,7 +21,8 @@ import {SketchPicker} from 'react-color';
             isHidden:"true",
             eventTarget:null,
             mouseClient:{x:null,y:null},
-            isLocked:'false'
+            isLocked:'false',
+            id:props.id
             
         };
 
@@ -54,9 +55,9 @@ import {SketchPicker} from 'react-color';
     handleClick(e){ //TOGGLE COLOR PICKER
         
         if(this.state.isHidden){
-            document.addEventListener('click', this.handleOutsideClick , false);
+            document.addEventListener('click',this.handleOutsideClick, false);
         }else{
-            document.removeEventListener('click', this.handleOutsideClick, false);
+            document.removeEventListener('click',this.handleOutsideClick, false);
         }
 
         this.setState(prevState => ({
@@ -67,13 +68,13 @@ import {SketchPicker} from 'react-color';
     }
 
     handleOutsideClick(e){  //FIND a way to get the click event listener from the highest level
-        
-        if(this.node.isSameNode(e.target)){
+        if(this.node.isSameNode(e.target)||this.node.contains(e.target)){
             return;
         }
 
         this.handleClick();
     }
+
 
     onChange(color,event){
         let {r,g,b} = color.rgb;
@@ -133,12 +134,13 @@ import {SketchPicker} from 'react-color';
         return (
             <span class='fit palette-brick' >
             <ColorBlock color={this.props.rgb} size={this.state.size} onClick={(e) => this.handleClick(e)}></ColorBlock>
-             
-            <div class='pallete-brick-sketchPicker' ref={node => { this.node = node; }} >
-            {!this.state.isHidden && <SketchPicker color={tempRGB} onChange={this.onChange} />}   
+            {!this.state.isHidden &&  
+            <div class='pallete-brick-sketchPicker' ref={node => { this.node = node; }}>
+            <SketchPicker color={tempRGB} onChange={this.onChange} />   
             </div>
+            }
         
-            <ColorBlockTools colorCode={this.rgbToHex(this.props.rgb)} onLock={(lockedBool)=>{this.lockEvent(lockedBool)}}></ColorBlockTools>
+            <ColorBlockTools id={this.state.id} colorCode={this.rgbToHex(this.props.rgb)} onLock={(lockedBool)=>{this.lockEvent(lockedBool)}}></ColorBlockTools>
             </span>
         );
     }

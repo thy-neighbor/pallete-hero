@@ -8,8 +8,8 @@ import './float-grid.css'
 import NavBar from './components/nav-bar'
 import FooterBar from './components/footer-bar'
 import Landing from './components/landing'
-import Home from './components/home'
-import MyPalettes from './components/my-palettes'
+import Creator from './components/creator'
+import Dashboard from './components/dashboard'
 import SignUp from './components/signup'
 import Login from './components/login'
 //import ColorBlock from './components/palette/color-block'
@@ -56,8 +56,8 @@ export class PaletteHero extends React.Component {
             <br/>
             <main>
               <Route exact path="/" component={Landing} />
-              <Route exact path="/home" component={Home} />
-              <Route exact path="/my-palettes" component={MyPalettes} />
+              <Route exact path="/creator" component={Creator} />
+              <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/login" component={Login} />
             </main>

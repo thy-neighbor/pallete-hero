@@ -34,6 +34,9 @@ export const lockPaletteBrick = (itemId,isLocked) => ({
     isLocked
 });
 
-export const fetchPalette = dispatch => {
-
-}
+export const SWAP_PALETTE_BRICK = "SWAP_PALETTE_BRICK";
+export const swapPaletteBrick = (curr,target) => ({
+    type: SWAP_PALETTE_BRICK,
+    curr,
+    target
+});

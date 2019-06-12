@@ -1,7 +1,8 @@
 //
 
 import React from "react";
-
+import './landing.css';
+import PaletteCreator from './palette/palette-creator';
 
 
 export default function Landing(props){
@@ -13,7 +14,7 @@ export default function Landing(props){
                     <div class="col-inner">
                         <header role="banner">  
                             <h1>Palette Hero</h1>
-                            <h2>save your color</h2>
+                            <h2>Save Your Color <br/>... literally</h2>
                         </header>
                     </div>
                 </div>
@@ -23,12 +24,15 @@ export default function Landing(props){
                 <div class="col-12">
                     <div class="col-inner">
                         <header>
-                            <h3>Create and Save a palette</h3>
+                            <h3>Create and Save a Palette</h3>
                         </header>
-                        <p>[<em>placeholder for palette maker</em>]</p>
+                        
                         <p>Palette Hero uses the colormind.io api to help you make your own
                             palette aided by an AI, then name and save your creation
                         </p>
+                        <br/>
+                        <PaletteCreator></PaletteCreator>
+                        
                     </div>
                 </div>
             </div>
@@ -37,10 +41,10 @@ export default function Landing(props){
                 <div class="col-12">
                     <div class="col-inner">
                         <header>
-                            <h3>Start making Palettes</h3>
+                            <h3>Start Making Palettes!</h3>
                         </header>
-                        <button class="btn login">Login</button>
-                        <button class="btn signup">SignUp</button>
+                        <a class="btn landing-login" href="/login">Login</a>
+                        <a class="btn signup" href="/signup">Signup</a>
                     </div>
                 </div>    
             </div>

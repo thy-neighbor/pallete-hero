@@ -1,0 +1,55 @@
+
+#my-palettes-buttons{
+    background:#7A8587;
+    color:white;
+    
+}
+
+.btn.start {
+    margin:17px;
+    background:rgb(235, 231, 231);
+    box-shadow: 0px 0px 0px 0px #01939A;
+
+}
+  
+.btn.start:hover {
+    box-shadow: 0px 0px 0px 5px #01939A;
+    color:black;
+}
+
+.btn.list {
+    margin:17px;
+    margin-top:75px;
+    background:#271F2B;
+    box-shadow: 0px 0px 0px 0px #01939A;
+    color:white;
+
+}
+  
+.btn.list:hover {
+    box-shadow: 0px 0px 0px 5px #01939A;
+    color:rgb(238, 238, 238)
+}
+
+.btn.save {
+    margin:15px;
+    background:#271F2B;
+    box-shadow: 0px 0px 0px 0px #01939A;
+    color:white;
+
+}
+  
+.btn.save:hover {
+    box-shadow: 0px 0px 0px 5px #F4F7F6;
+    color:rgb(238, 238, 238)
+}
+
+.dashboard-username{
+    float:left;
+    position: absolute;
+    color:#7A8587;
+}
+
+.col-inner > header{
+    margin-bottom: 20px;
+}

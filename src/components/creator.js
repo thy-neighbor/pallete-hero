@@ -3,10 +3,18 @@
 import React from 'react'
 import PaletteCreator from './palette/palette-creator'
 import {postPaletteData} from '../actions/protected-data';
+import {MiniPaletteBlank} from './palette/mini-palette-blank'
+import {fetchCommunityData} from '../actions/protected-data';
 import {connect} from 'react-redux';
+import './creator.css'
 
 //Make sure save doesnt render if the user isnt loggedIn(or 2 different Home components)
-export class Home extends React.Component{
+export class Creator extends React.Component{
+
+    componentDidMount() {
+        this.props.dispatch(fetchCommunityData());
+    }
+
     savePalette(){
         const text = this.textInput.value.trim();
         this.props.dispatch(postPaletteData(text,this.props.rgb));
@@ -25,9 +33,10 @@ export class Home extends React.Component{
                             </header>
                             <PaletteCreator></PaletteCreator>
                             
+                            
+                            <input class="inp save" type='text' ref={input => this.textInput = input} placeholder="Enter Name Here"></input>
                             <br/>
-                            <input type='text' ref={input => this.textInput = input} placeholder="Enter Name Here"></input>
-                            <button onClick={()=>this.savePalette()}>Save</button>
+                            <a class="btn save" onClick={()=>this.savePalette()}>Save</a>
                         </div>
                     </div>
                 </div>
@@ -38,7 +47,7 @@ export class Home extends React.Component{
                             <header>
                                 <h3>View My Palettes</h3>
                             </header>
-                            <button class="btn">Click Here</button>
+                            <a class="btn pal" href="/dashboard">Click Here</a>
                         </div>
                     </div>
                 </div>
@@ -49,28 +58,34 @@ export class Home extends React.Component{
                             <header>
                                 <h3>Recent Community Palettes</h3>
                             </header>
+                            
                             <div id="community-palettes">
-                                <p>[<em>placeholder for Palette maker</em>]</p>
-                                <p>[<em>placeholder for Palette maker</em>]</p>
-                                <p>[<em>placeholder for Palette maker</em>]</p>
+                                <div class="col-4">
+                                    {this.props.comm !=='' && <MiniPaletteBlank rgb={this.props.comm[0].rgb} title={this.props.comm[0].name}/>}
+                                </div>
+                                <div class="col-4">
+                                    {this.props.comm !=='' && <MiniPaletteBlank rgb={this.props.comm[1].rgb} title={this.props.comm[1].name}/>}
+                                </div>
+                                <div class="col-4"> 
+                                    {this.props.comm !=='' && <MiniPaletteBlank rgb={this.props.comm[2].rgb} title={this.props.comm[2].name}/>}
+                                </div> 
                             </div>
-
                         </div>
                     </div>    
                 </div>
 
             </section>
         );
-    }
-        
+    }    
 }
 
 const mapStateToProps = state => {
     return {
         loggedIn: state.auth.currentUser !== null,
-        rgb:state.paletteCreator.palette        
+        rgb:state.paletteCreator.palette,
+        comm: state.protectedData.comm     
     };
 
 };
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Creator);

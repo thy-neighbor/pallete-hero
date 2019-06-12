@@ -1,0 +1,29 @@
+#login-content{
+    background:#8B8A93;
+    
+}
+
+.col-12 > p{
+    color:white;
+}
+
+.link{
+    text-decoration: none;
+    color:rgb(83, 83, 248);
+}
+
+
+
+.btn.login {
+    background:#271F2B;
+    margin:8px;
+    box-shadow: 0px 0px 0px 0px #01939A;
+    color:white;
+}
+  
+.btn.login:hover {
+    box-shadow: 0px 0px 0px 5px #01939A;
+}
+
+
+

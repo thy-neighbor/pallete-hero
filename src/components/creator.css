@@ -1,0 +1,61 @@
+.col-inner > header{
+    margin-bottom: 20px;
+}
+
+#community-palettes{
+    margin-top: 65px;
+}
+
+.btn.save {
+    margin:15px;
+    background:#8B8A93;
+    box-shadow: 0px 0px 0px 0px #01939A;
+    color:white;
+
+}
+  
+.btn.save:hover {
+    box-shadow: 0px 0px 0px 5px #F4F7F6;
+    color:rgb(238, 238, 238)
+}
+
+#home-buttons{
+    background:#7A8587;
+    color:white;
+}
+
+#home-community-palettes{
+    background:#271F2B;
+    color:white;
+}
+
+.btn.pal {
+    margin:15px;
+    background:#F4F7F6;
+    box-shadow: 0px 0px 0px 0px #01939A;
+    color:#271F2B;
+
+}
+  
+.btn.pal:hover {
+    box-shadow: 0px 0px 0px 5px #01939A;
+    color:rgb(121, 110, 126);
+}
+
+.btn.btn-left.generate {
+    background:#F4F7F6;
+    margin:20px;
+    box-shadow: 0px 0px 0px 0px #01939A;
+    color:black;
+    position: relative;
+    left: 45px;
+    width: 100px;
+    display: block;
+    margin-bottom: 0px;
+ 
+}
+  
+.btn.btn-left.generate:hover {
+    box-shadow: 0px 0px 0px 5px rgb(184, 203, 204);
+}
+

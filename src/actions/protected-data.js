@@ -14,6 +14,12 @@ export const fetchPaletteDataSuccess = data => ({
     data
 });
 
+export const FETCH_COMMUNITY_DATA_SUCCESS = 'FETCH_COMMUNITY_DATA_SUCCESS';
+export const fetchCommunityDataSuccess = data => ({
+    type: FETCH_COMMUNITY_DATA_SUCCESS,
+    data
+});
+
 export const FETCH_PROTECTED_DATA_ERROR = 'FETCH_PROTECTED_DATA_ERROR';
 export const fetchProtectedDataError = error => ({
     type: FETCH_PROTECTED_DATA_ERROR,
@@ -70,7 +76,6 @@ export const postPaletteData = (title,newPalette) => (dispatch, getState) => {
 };
 
 
-//NOW WE GOTTA WORK ON THIS MOTHAFUCKER!!!!!!!!
 export const fetchPaletteData = () => (dispatch, getState) =>{
     console.log(`Actions>Protected-Data.js fetchPaletteData : Here`);
     
@@ -145,4 +150,22 @@ export const updatePaletteData = (id,rgb) => (dispatch, getState) => {
         }
     });
    
+};
+
+//NOW WE GOTTA WORK ON THIS MOTHAFUCKAA!!!!!!!!
+export const fetchCommunityData = () => (dispatch) => {
+    console.log("INSIDE FETCHCOMMUNITYDATA");
+    return fetch(`${API_BASE_URL}/public/community`, {
+        method: 'GET',
+        headers:{
+            'Accept':'*/*',
+            'cache-control': 'no-cache'
+        }
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(({data}) => {dispatch(fetchCommunityDataSuccess(data))})
+    .catch(err => {
+        dispatch(fetchProtectedDataError(err));
+    });
 };

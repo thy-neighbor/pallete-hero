@@ -1,10 +1,11 @@
 
-.color-block:focus{
-    
+.icon{
+    width: 25px;
+    filter: opacity(30%);
 }
 
-.icon{
-
+.icon:hover{
+    filter: opacity(100%);
 }
 
 .fit{
@@ -55,6 +56,16 @@ clear: both;
     z-index: 2000;
 }
 
+.icon-stack{
+    filter: opacity(50%);
+    margin: 8px;
+}
+
+.icon-stack:hover{
+    filter: opacity(100%);
+    cursor: pointer;
+}
+
 
 /*
 @media only screen and (min-width: 640px) {
@@ -77,5 +88,6 @@ clear: both;
 }
 
 */
+
 
 

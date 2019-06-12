@@ -91,8 +91,9 @@ export default class PaletteList extends React.Component{
                     <MiniPalette rgb={item[8+iter].rgb} title={item[8+iter].name} id={item[8+iter]._id}></MiniPalette>
                     </div>
                 </div>
-                {item.length>9 && item[0+iter-9]!==undefined && <button onClick={()=> this.clickEvent(this.state.listIterator-9)}>Prev</button> }
-                {item[0+iter+9]!==undefined && <button onClick={()=> this.clickEvent(this.state.listIterator+9)}>Next</button> }
+                
+                {item.length>9 && item[0+iter-9]!==undefined && <a class="btn list" onClick={()=> this.clickEvent(this.state.listIterator-9)}>Prev</a> }
+                {item[0+iter+9]!==undefined && <a class="btn list" onClick={()=> this.clickEvent(this.state.listIterator+9)}>Next</a> }
             </section>   
         );
     }

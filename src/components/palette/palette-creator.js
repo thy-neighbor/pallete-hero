@@ -34,14 +34,14 @@ export class Palette extends React.Component{
             
             <div class="palette-creator-wrapper">
                 <div class="center palette-creator">
-                    <PaletteBrick rgb={this.props.rgb[0]} size="171" onColorChange={(color)=>{this.onColorChange(0,color)}} onLock={(lockedBool)=>{this.lockEvent(0,lockedBool)}}></PaletteBrick>
-                    <PaletteBrick rgb={this.props.rgb[1]} size="171" onColorChange={(color)=>{this.onColorChange(1,color)}} onLock={(lockedBool)=>{this.lockEvent(1,lockedBool)}}></PaletteBrick>
-                    <PaletteBrick rgb={this.props.rgb[2]} size="171" onColorChange={(color)=>{this.onColorChange(2,color)}} onLock={(lockedBool)=>{this.lockEvent(2,lockedBool)}}></PaletteBrick>
-                    <PaletteBrick rgb={this.props.rgb[3]} size="171" onColorChange={(color)=>{this.onColorChange(3,color)}} onLock={(lockedBool)=>{this.lockEvent(3,lockedBool)}}></PaletteBrick>
-                    <PaletteBrick rgb={this.props.rgb[4]} size="171" onColorChange={(color)=>{this.onColorChange(4,color)}} onLock={(lockedBool)=>{this.lockEvent(4,lockedBool)}}></PaletteBrick>
+                    <PaletteBrick id={0} rgb={this.props.rgb[0]} size="171" onColorChange={(color)=>{this.onColorChange(0,color)}} onLock={(lockedBool)=>{this.lockEvent(0,lockedBool)}}></PaletteBrick>
+                    <PaletteBrick id={1} rgb={this.props.rgb[1]} size="171" onColorChange={(color)=>{this.onColorChange(1,color)}} onLock={(lockedBool)=>{this.lockEvent(1,lockedBool)}}></PaletteBrick>
+                    <PaletteBrick id={2} rgb={this.props.rgb[2]} size="171" onColorChange={(color)=>{this.onColorChange(2,color)}} onLock={(lockedBool)=>{this.lockEvent(2,lockedBool)}}></PaletteBrick>
+                    <PaletteBrick id={3} rgb={this.props.rgb[3]} size="171" onColorChange={(color)=>{this.onColorChange(3,color)}} onLock={(lockedBool)=>{this.lockEvent(3,lockedBool)}}></PaletteBrick>
+                    <PaletteBrick id={4} rgb={this.props.rgb[4]} size="171" onColorChange={(color)=>{this.onColorChange(4,color)}} onLock={(lockedBool)=>{this.lockEvent(4,lockedBool)}}></PaletteBrick>
                 </div>
                 <br/>
-                <button class="btn btn-left generate" onClick= {()=>{this.onClickGeneratePalette()}}>Generate</button>
+                <a class="btn btn-left generate" onClick= {()=>{this.onClickGeneratePalette()}}>Generate</a>
             </div>
                 
         );

@@ -1,4 +1,4 @@
-import {SET_PALETTE, SET_FULL_PALETTE, GENERATE_PALETTE, LOCK_PALETTE_BRICK, SET_EDIT_STATE} from '../actions/actions'
+import {SET_PALETTE, SET_FULL_PALETTE, GENERATE_PALETTE, LOCK_PALETTE_BRICK, SET_EDIT_STATE, SWAP_PALETTE_BRICK} from '../actions/actions'
 
 /* var url = "http://colormind.io/api/";
 var data = {
@@ -102,7 +102,27 @@ export default function paletteHeroReducer(state=initialState, action) {
             myInput:newLockPat
         });
 
-    } 
+    }else if(action.type === SWAP_PALETTE_BRICK){
+        console.log("YOUR IN REDUCER FOR SWAP PALETTE BRICK");
+        //time to swap 
+        let curr=state.palette[action.curr];
+        let tar=state.palette[action.target];
+        let newRGB=state.palette.map((item,i)=>{
+            if(i===action.curr){
+                return(tar);
+            }else if(i===action.target){
+                return(curr);
+            }else{
+                return item;
+            }
+        });
+        
+        console.log("NEW PALETTE AFTER SWAP: ",state.palette, newRGB);
+       
+        return Object.assign({},state,{
+            palette:newRGB
+        });
+    }
 
     return state;
 }

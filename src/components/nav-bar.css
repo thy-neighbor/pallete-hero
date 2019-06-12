@@ -42,6 +42,11 @@
   .nav > #nav-check {
     display: none;
   }
+
+  img.header-icon {
+    position: relative;
+    top: 5px;
+}
   
   @media (max-width:600px) {
     .nav > .nav-btn {
