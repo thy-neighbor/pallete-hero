@@ -116,11 +116,25 @@ export default function paletteHeroReducer(state=initialState, action) {
                 return item;
             }
         });
+
+        curr=state.myInput[action.curr];
+        tar=state.myInput[action.target];
+        let newInput=state.myInput.map((item,i)=>{
+            if(i===action.curr){
+                return(tar);
+            }else if(i===action.target){
+                return(curr);
+            }else{
+                return item;
+            }
+        });
+        
         
         console.log("NEW PALETTE AFTER SWAP: ",state.palette, newRGB);
        
         return Object.assign({},state,{
-            palette:newRGB
+            palette:newRGB,
+            myInput:newInput
         });
     }
 

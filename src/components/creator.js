@@ -7,6 +7,7 @@ import {MiniPaletteBlank} from './palette/mini-palette-blank'
 import {fetchCommunityData} from '../actions/protected-data';
 import {connect} from 'react-redux';
 import './creator.css'
+import requiresLogin from './requires-login';
 
 //Make sure save doesnt render if the user isnt loggedIn(or 2 different Home components)
 export class Creator extends React.Component{
@@ -33,10 +34,11 @@ export class Creator extends React.Component{
                             </header>
                             <PaletteCreator></PaletteCreator>
                             
-                            
+                            {this.props.loggedIn &&<span>
                             <input class="inp save" type='text' ref={input => this.textInput = input} placeholder="Enter Name Here"></input>
                             <br/>
                             <a class="btn save" onClick={()=>this.savePalette()}>Save</a>
+                            </span>}
                         </div>
                     </div>
                 </div>
@@ -88,4 +90,4 @@ const mapStateToProps = state => {
 
 };
 
-export default connect(mapStateToProps)(Creator);
+export default requiresLogin()(connect(mapStateToProps)(Creator));

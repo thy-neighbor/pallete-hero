@@ -16,7 +16,7 @@ export class NavBar extends React.Component{
     render(){
         return(
             <div class="nav">
-                <a class="nav-header" href="/landing">
+                <a class="nav-header" href="/">
                     <div class="nav-title" >
                         Palette Hero
                     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
+import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
+import {Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {refreshAuthToken} from './actions/auth';
 
@@ -49,17 +50,26 @@ export class PaletteHero extends React.Component {
   }
 
   render() {
+    const Page404 = ({ location }) => (
+      <div>
+         <h2>Awww there are no Palettes found here for <code>{location.pathname}</code> <br/> Try something else maybe?</h2>
+      </div>
+   );
+
     return (
       <Router>
         <div className="Palette-Hero">
           <NavBar></NavBar>
             <br/>
             <main>
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/creator" component={Creator} />
-              <Route exact path="/dashboard" component={Dashboard} />
-              <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/login" component={Login} />
+              <Switch>
+                <Route exact path="/" component={Landing} />
+                <Route exact path="/creator" component={Creator} />
+                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/signup" component={SignUp} />
+                <Route exact path="/login" component={Login} />
+                <Route component={Page404} />
+              </Switch>
             </main>
             <br/>
           <FooterBar></FooterBar>
