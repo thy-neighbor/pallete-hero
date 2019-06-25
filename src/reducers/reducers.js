@@ -24,7 +24,7 @@ http.onreadystatechange = function() {
         palette = JSON.parse(http.responseText).result;
     }
 }
-http.open("POST", url, false);
+http.open("POST", url);
 http.send(JSON.stringify(data));
 console.log("PALETTTEEE!!",palette);
 

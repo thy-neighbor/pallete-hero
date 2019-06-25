@@ -8,6 +8,8 @@ import {fetchCommunityData} from '../actions/protected-data';
 import {connect} from 'react-redux';
 import './creator.css'
 import requiresLogin from './requires-login';
+import {Link, Redirect} from 'react-router-dom';
+import Popup from "reactjs-popup";
 
 //Make sure save doesnt render if the user isnt loggedIn(or 2 different Home components)
 export class Creator extends React.Component{
@@ -19,6 +21,7 @@ export class Creator extends React.Component{
     savePalette(){
         const text = this.textInput.value.trim();
         this.props.dispatch(postPaletteData(text,this.props.rgb));
+
     }
 
     render(){
@@ -37,7 +40,7 @@ export class Creator extends React.Component{
                             {this.props.loggedIn &&<span>
                             <input class="inp save" type='text' ref={input => this.textInput = input} placeholder="Enter Name Here"></input>
                             <br/>
-                            <a class="btn save" onClick={()=>this.savePalette()}>Save</a>
+                            <a class="btn save" href="/creator" onClick={()=>this.savePalette()}>Save</a>
                             </span>}
                         </div>
                     </div>
