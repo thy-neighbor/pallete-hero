@@ -24,7 +24,7 @@ http.onreadystatechange = function() {
         palette = JSON.parse(http.responseText).result;
     }
 }
-http.open("POST", url);
+http.open("POST", url, false);
 http.send(JSON.stringify(data));
 console.log("PALETTTEEE!!",palette);
 
@@ -140,5 +140,3 @@ export default function paletteHeroReducer(state=initialState, action) {
 
     return state;
 }
-
-//YOU SHOULD CONNECT EVERYTHING FIRST WITH FAKE DATA THEN MAKE THE API WOORK
