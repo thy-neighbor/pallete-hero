@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import {setFullPalette, setEditState} from '../../actions/actions';
 import {updatePaletteData,postPaletteData} from '../../actions/protected-data';
 import '../popup-modal.css'
-
+import DuplicateForm from './duplicate-form'
 
 
 
@@ -22,7 +22,7 @@ export class MiniPalette extends React.Component{
 
         this.state = {
 
-            up:false,  //random toggle to cause update in parent element
+            edit:false,  //random toggle to cause update in parent element
             duplicate:false,
             empty:true
             
@@ -33,7 +33,6 @@ export class MiniPalette extends React.Component{
     onClickOpenEdit(rgb){
       this.props.dispatch(setFullPalette(rgb));
       return true;
-      
     }
 
     onCloseModal(){
@@ -47,32 +46,37 @@ export class MiniPalette extends React.Component{
 
     onClickUpdate(id,rgb){//maybe also throw a toast saying that it updated
       //dispatch a put request
-      this.props.dispatch(updatePaletteData(id,rgb));
+      this.props.dispatch(updatePaletteData(id));
+      window.location = '/dashboard';
     }
 
-    savePalette(){
+/*     savePalette(){//DOUBLE CHECK THIS CAUSE ITS WRONG
       const text = this.textInput.value.trim();
-      this.props.dispatch(postPaletteData(text,this.props.rgb));
+      console.log("MINI PALETTE NEEDS ADJUSTMENT");
+      this.props.dispatch(postPaletteData(text));
       this.props.dispatch(setEditState(false));
       
-    }
+    } */
 
     isEmpty(text){
       if(text===' ' ||text===''|| text===undefined || text===null){
-        this.setState({
+/*         this.setState({
           empty:true
-        });
+        }); */
+        return false;
       }else{
-        this.setState({
+/*         this.setState({
           empty:false
-        });
-      }
+        });*/
+        return true;
+      } 
     }
 
-
+//<input type='text' ref={input => this.textInput = input} placeholder="Enter Name Here" onChange={(text)=> this.textInput = text} ></input>
 
     render(){
         console.log("RENDER in Mini-PALETTE",this.props.rgb);
+        let bool;
         //modal doesnt show any content for some reason
         const duplicateButton=
             <Popup trigger={<img class="icon-stack" src="https://img.icons8.com/dotty/80/000000/copy.png" alt="copy icon" width="30px" title="Copy Palette"></img>} modal>
@@ -81,14 +85,15 @@ export class MiniPalette extends React.Component{
                 <a className="close" onClick={close}>
                   &times;
                 </a>
-                <div className="header"> "<input type='text' ref={input => this.textInput = input} placeholder="Enter Name Here" onChange={(text)=>this.isEmpty(text)} ></input>" </div>
+                <div className="header"> 
+                
+                </div>
                 <div className="content">
                   {' '}
                   <PaletteCreator></PaletteCreator>
                 </div>
                 <div className="actions">
-                  {!this.state.empty && 
-                  <a class="btn save" onClick={()=>{this.savePalette(); close()}}>Save</a>}
+                  <DuplicateForm close={()=>close()}></DuplicateForm>
                 </div>
               </div>
             )}
@@ -107,7 +112,7 @@ export class MiniPalette extends React.Component{
                 <PaletteCreator></PaletteCreator>
               </div>
               <div className="actions">
-                <a class="btn save" onClick={()=>{this.onClickUpdate(this.state.id,this.props.paletteCreatorRgb); close()}}>Update</a>
+                <a class="btn save" onClick={()=>{this.onClickUpdate(this.state.id); close()}}>Update</a>
                 <a class="btn save" onClick={() => {close()}}>Close</a>
               </div>
               
@@ -150,7 +155,6 @@ export class MiniPalette extends React.Component{
 const mapStateToProps = state => {
     return {
         loggedIn: state.auth.currentUser !== null,
-        paletteCreatorRgb:state.paletteCreator.palette,
         open:false        
     };
 

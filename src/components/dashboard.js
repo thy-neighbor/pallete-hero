@@ -21,7 +21,7 @@ export class Dashboard extends React.Component{
 
     render(){
         let testRgb=[[203, 44, 18],[247, 187, 54],[231, 226, 154],[79, 166, 120],[110, 143, 84]];
-        console.log("HERE IS the PALETTE DATA IN my-palette render :",this.props.paletteData);
+        console.log("HERE IS the PALETTE DATA IN dashboard render :",this.props.paletteData);
 
         return(
 

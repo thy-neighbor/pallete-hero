@@ -1,4 +1,4 @@
-import {SET_PALETTE, SET_FULL_PALETTE, GENERATE_PALETTE, LOCK_PALETTE_BRICK, SET_EDIT_STATE, SWAP_PALETTE_BRICK} from '../actions/actions'
+import {GET_PALETTE,SET_PALETTE, SET_FULL_PALETTE, GENERATE_PALETTE, LOCK_PALETTE_BRICK, SET_EDIT_STATE, SWAP_PALETTE_BRICK, apiPostPalette, SET_LOADING} from '../actions/actions'
 
 /* var url = "http://colormind.io/api/";
 var data = {
@@ -13,10 +13,11 @@ var data = {
 	input : ["N","N","N","N","N"]
 }
 
-var http = new XMLHttpRequest();
+//var http = new XMLHttpRequest();
 var palette;    //file scope, used to recieve palette from colormind.api
-        
 
+    
+/* 
 http.onreadystatechange = function() {
     console.log(http.readyState,http.status);
     if(http.readyState === 4 && http.status === 200) {
@@ -27,11 +28,17 @@ http.onreadystatechange = function() {
 http.open("POST", url, false);
 http.send(JSON.stringify(data));
 console.log("PALETTTEEE!!",palette);
+ */
+
+
+//i may need to make this request into an action, with inp as the input
+
 
 const initialState = {
     palette,
     myInput:["N","N","N","N","N"],   //this works as lock pattern since the api takes n as unknowns, if not n the value doesnt change
-    edit:false
+    edit:false,
+    loading:true
 };
 
 //my reducers are gonna just post to the endpoints to save things to the data base
@@ -54,20 +61,13 @@ export default function paletteHeroReducer(state=initialState, action) {
     }else if(action.type === GENERATE_PALETTE){
         console.log("YOUR IN REDUCER FOR GENERATE PALETTE");
         
-        if(!state.myInput.includes("N")){   //if the array is full there is no need to send it to the api
-            return state;
-        }
 
-        var newData = {
-            model : "default",
-            input : state.myInput
-        }
-
-        http.open("POST", url, true);//originally worked with 'false' async option
-        http.send(JSON.stringify(newData));
+        //http.open("POST", url, true);//originally worked with 'false' async option
+        //http.send(JSON.stringify(newData));
 
         return Object.assign({},state,{
-            palette
+            palette:action.rgb,
+            loading:false
         });
 
     }else if(action.type === SET_FULL_PALETTE){
@@ -75,7 +75,8 @@ export default function paletteHeroReducer(state=initialState, action) {
         return Object.assign({},state,{
             palette:action.rgb,
             myInput:action.rgb, //i need it full so they do change immediately
-            edit:true
+            edit:true,
+            loading:false
         });
     }else if(action.type === SET_EDIT_STATE){
         console.log("YOUR IN REDUCER FOR SET EDIT STATE");
@@ -135,6 +136,11 @@ export default function paletteHeroReducer(state=initialState, action) {
         return Object.assign({},state,{
             palette:newRGB,
             myInput:newInput
+        });
+    }else if(action.type === SET_LOADING){
+        console.log("YOUR IN REDUCER FOR SET LOADING", action.loading);
+        return Object.assign({},state,{
+            loading:action.loading
         });
     }
 

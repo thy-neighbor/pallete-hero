@@ -10,7 +10,7 @@ export class ExitIcon extends React.Component{
         super(props);
 
         this.state = {
-            paletteId:props.paletteId,
+            //paletteId:props.paletteId,
             hover:false
         };
 
@@ -18,7 +18,9 @@ export class ExitIcon extends React.Component{
 
 
     onClickDelete(id){
+        console.log("ON CLICK DELETE ID: ", id);
         this.props.dispatch(deletePaletteData(id));
+        window.location = '/dashboard';
     }
 
     toggleHover(){
@@ -38,7 +40,7 @@ export class ExitIcon extends React.Component{
             linkStyle = {color: 'gray',cursor:"default", fontSize:'14px' }
         }
         return(
-            <div onClick={()=> this.onClickDelete(this.state.paletteId)}  onMouseEnter={()=>this.toggleHover()} onMouseLeave={()=>this.toggleHover()}>
+            <div onClick={()=> this.onClickDelete(this.props.paletteId)}  onMouseEnter={()=>this.toggleHover()} onMouseLeave={()=>this.toggleHover()}>
                 <p style={linkStyle}>x</p>
             </div>
             

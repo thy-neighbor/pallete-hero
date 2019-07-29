@@ -2,7 +2,7 @@ import React from 'react'
 import MiniPalette from './mini-palette';
 import './palette.css'
 
-
+//SOMEHOW THIS IS DIRECTlY Affecting the STATE, SO NOTHING RE-RENDERS
 export default class PaletteList extends React.Component{
 
     constructor(props){
@@ -54,7 +54,7 @@ export default class PaletteList extends React.Component{
         let item=this.state.paletteData;
         let iter=this.state.listIterator;
         console.log("Here is my CORRECTED LIST",item, iter);
-        console.log("7+iter==",7,'+', iter,'=====',7+iter);
+        
         
         return(
             <section class="my-palette-col">
