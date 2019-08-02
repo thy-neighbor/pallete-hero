@@ -1,17 +1,14 @@
-//highest level with 5 color bricks
 import React from 'react'
 import ColorBlock from './color-block';
 import ExitIcon from './exit-icon'
-//import { SketchPicker } from 'react-color'
 import './palette.css'
 import PaletteCreator from './palette-creator';
 import Popup from "reactjs-popup";
 import { connect } from 'react-redux';
 import {setFullPalette, setEditState} from '../../actions/actions';
-import {updatePaletteData,postPaletteData} from '../../actions/protected-data';
+import {updatePaletteData} from '../../actions/protected-data';
 import '../popup-modal.css'
 import DuplicateForm from './duplicate-form'
-
 
 
 
@@ -45,39 +42,24 @@ export class MiniPalette extends React.Component{
     }
 
     onClickUpdate(id,rgb){//maybe also throw a toast saying that it updated
-      //dispatch a put request
       this.props.dispatch(updatePaletteData(id));
       window.location = '/dashboard';
     }
 
-/*     savePalette(){//DOUBLE CHECK THIS CAUSE ITS WRONG
-      const text = this.textInput.value.trim();
-      console.log("MINI PALETTE NEEDS ADJUSTMENT");
-      this.props.dispatch(postPaletteData(text));
-      this.props.dispatch(setEditState(false));
-      
-    } */
 
     isEmpty(text){
       if(text===' ' ||text===''|| text===undefined || text===null){
-/*         this.setState({
-          empty:true
-        }); */
         return false;
       }else{
-/*         this.setState({
-          empty:false
-        });*/
         return true;
       } 
     }
 
-//<input type='text' ref={input => this.textInput = input} placeholder="Enter Name Here" onChange={(text)=> this.textInput = text} ></input>
 
     render(){
-        console.log("RENDER in Mini-PALETTE",this.props.rgb);
         let bool;
-        //modal doesnt show any content for some reason
+
+        //duplicate - popup declaration
         const duplicateButton=
             <Popup trigger={<img class="icon-stack" src="https://img.icons8.com/dotty/80/000000/copy.png" alt="copy icon" width="30px" title="Copy Palette"></img>} modal>
               {close => (this.onOpenDuplicate(this.props.rgb) &&  
@@ -98,7 +80,8 @@ export class MiniPalette extends React.Component{
               </div>
             )}
             </Popup>;
-
+        
+        //edit - popup declaration
         const editButton=
           <Popup trigger={<img class="icon-stack" src="https://img.icons8.com/wired/64/000000/edit-row.png" alt='edit palette' title="Edit Palette" width="30px"></img>} position="right center" modal onClose={()=>this.onCloseModal()} >{close => ( 
             this.onClickOpenEdit(this.props.rgb) &&
@@ -119,7 +102,6 @@ export class MiniPalette extends React.Component{
             </div>
           )}
         </Popup>;
-
 
 
         return(

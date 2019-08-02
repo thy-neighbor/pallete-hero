@@ -20,7 +20,6 @@ export class MiniPaletteBlank extends React.Component{
 
 
     render(){
-        console.log("RENDER in Mini-PALETTE",this.props.rgb);
 
         return(   
             <div class="mini-palette-wrapper">

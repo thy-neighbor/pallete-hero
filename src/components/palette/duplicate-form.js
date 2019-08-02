@@ -2,8 +2,8 @@
 import {Field, reduxForm, focus} from 'redux-form';
 import React from 'react';
 import Input from '../input';
-import {required, nonEmpty, matches, length, isTrimmed} from '../../validators';
-import {postPaletteData,addPaletteData} from '../../actions/protected-data';
+import {required, nonEmpty, isTrimmed} from '../../validators';
+import {addPaletteData} from '../../actions/protected-data';
 import {setEditState} from '../../actions/actions';
 import './duplicate-form.css'
 
@@ -40,7 +40,6 @@ export class DuplicateForm extends React.Component{
                 </form>
         );
     }   
-//<a class="btn save" onClick={()=>{this.savePalette(); close()}}>Save</a>
       
 }
 

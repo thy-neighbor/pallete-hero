@@ -13,10 +13,6 @@ import Creator from './components/creator'
 import Dashboard from './components/dashboard'
 import SignUp from './components/signup'
 import Login from './components/login'
-//import ColorBlock from './components/palette/color-block'
-//import PaletteBrick from './components/palette/palette-brick'
-//import PaletteCreator from './components/palette/palette-creator'
-
 
 
 export class PaletteHero extends React.Component {
@@ -86,41 +82,3 @@ const mapStateToProps = state => ({
 
 // Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
 export default withRouter(connect(mapStateToProps)(PaletteHero));
-
-//export default PaletteHero;
-
-/* STEPS for this project
-
-1. Finish wireframe diagrams ##
-
-2. Code the general corresponding components (Monday) ##
-
-3. Build out the palette creator component(till it works w/ test data) (Tuesday)
-    color-block.js (stateless, props: rgb or hex value)
-    color-block-tools.js (stateless, props: rgb or hex)
-    palette-brick.js( Composed of color-block.js, color-block-tools.js ; Stateful)
-    palette-creator.js(5 palette bricks)
-
-Redux components Action/Reducers
-Do 
-Action, reducer and store drills for refresher!!
-    
-3-5. Add the api functionality for the palette creator (Wednesday)
-
-
-4. Add those to the jsx(where placeholders are)
-
-5. Initialize database and work with mock data (Thursday)
-
-6. Login/Signup/Logout Features (Friday)
-    Follow thinkful curriculum for jwt and login
-
-7. Add the rest of the CRUD actions for the user's palettes
-
-*/ 
-
-/*ADDITIONAL FEATURES 
-
--Community Page, that just has the most recent saves,an option that makes saved palettes public or private
-
-*/

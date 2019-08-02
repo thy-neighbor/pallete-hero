@@ -29,7 +29,7 @@ export default class PaletteList extends React.Component{
         if(l<9){
             l=9-l;
         }else{
-            //while(l>=9){l=l-9;}
+            
             let mult=Math.ceil(l/9); //multiple to scale up by
             l=(9*mult)-length;
         }
@@ -53,8 +53,6 @@ export default class PaletteList extends React.Component{
     render(){
         let item=this.state.paletteData;
         let iter=this.state.listIterator;
-        console.log("Here is my CORRECTED LIST",item, iter);
-        
         
         return(
             <section class="my-palette-col">

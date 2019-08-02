@@ -6,23 +6,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
-import MiniPalette from './palette/mini-palette';
 import PaletteList from './palette/palette-list';
-import {fetchProtectedData, fetchPaletteData} from '../actions/protected-data';
+import { fetchPaletteData} from '../actions/protected-data';
 import './dashboard.css';
 
 export class Dashboard extends React.Component{
 
 
     componentDidMount() {
-        //this.props.dispatch(fetchProtectedData());
         this.props.dispatch(fetchPaletteData());
     }
 
     render(){
-        let testRgb=[[203, 44, 18],[247, 187, 54],[231, 226, 154],[79, 166, 120],[110, 143, 84]];
-        console.log("HERE IS the PALETTE DATA IN dashboard render :",this.props.paletteData);
-
         return(
 
             <section class="my-palettes">

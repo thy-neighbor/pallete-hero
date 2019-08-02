@@ -8,10 +8,8 @@ import {fetchCommunityData} from '../actions/protected-data';
 import {connect} from 'react-redux';
 import './creator.css'
 import requiresLogin from './requires-login';
-import {Link, Redirect} from 'react-router-dom';
-import Popup from "reactjs-popup";
 
-//Make sure save doesnt render if the user isnt loggedIn(or 2 different Home components)
+
 export class Creator extends React.Component{
 
     componentDidMount() {

@@ -1,4 +1,3 @@
-//footer bar just has 
 import React from 'react';
 import './footer-bar.css';
 

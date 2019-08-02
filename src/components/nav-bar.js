@@ -1,10 +1,10 @@
+//nav-bar
+
 import React from 'react';
 import './nav-bar.css'
 import { connect } from 'react-redux';
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
-import {Redirect} from 'react-router-dom';
-
 
 
 export class NavBar extends React.Component{

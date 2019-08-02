@@ -13,9 +13,7 @@ import {SketchPicker} from 'react-color';
         super(props);
 
         this.state = {
-            //rgb:[45,13,200],
-            //size:'150px'
-            
+           
             rgb:props.rgb,
             size:props.size,
             isHidden:"true",
@@ -62,41 +60,23 @@ import {SketchPicker} from 'react-color';
 
         this.setState(prevState => ({
             isHidden: !prevState.isHidden,  //toggle for hiding this color picker
-    //        mouseClient:{x:e.clientX,y:e.clientY}
+
         }));
 
     }
 
-    handleOutsideClick(e){  //FIND a way to get the click event listener from the highest level
+    handleOutsideClick(e){  
         if(this.node.isSameNode(e.target)||this.node.contains(e.target)){
             return;
         }
-
         this.handleClick();
     }
 
 
     onChange(color,event){
         let {r,g,b} = color.rgb;
-        console.log("OnChange in Pallete Brick", [r, g, b]); 
         this.props.onColorChange([r,g,b]);
         
-    //This is the template of the "color" aggregate
-    // color = {
-    //   hex: '#333',
-    //   rgb: {
-    //     r: 51,
-    //     g: 51,
-    //     b: 51,
-    //     a: 1,
-    //   },
-    //   hsl: {
-    //     h: 0,
-    //     s: 0,
-    //     l: .20,
-    //     a: 1,
-    //   },
-    // }
     }
 
     lockEvent(lockedBool){
@@ -104,12 +84,7 @@ import {SketchPicker} from 'react-color';
         this.setState({
             isLocked: lockedBool  //toggle for hiding 
         });
-
-        console.log("PALETTE-BRICK lock state changed", lockedBool);
-
         this.props.onLock(lockedBool);
-
-        
     }
 
 
@@ -120,16 +95,6 @@ import {SketchPicker} from 'react-color';
             b:this.props.rgb[2]
         }
 
-
-/*
-        let mousePos={
-            left:`${this.state.mouseClient.x} px`, 
-            top:`${this.state.mouseClient.y} px`
-        }
-*/
-
-
-        console.log("RGB", tempRGB);
 
         return (
             <span class='fit palette-brick' >
@@ -145,20 +110,3 @@ import {SketchPicker} from 'react-color';
         );
     }
  }
-
-
-
- /*
-
-Convert a number to a hexadecimal string with:
-
-hexString = yourNumber.toString(16);
-if (hexString.length % 2) {
-  hexString = '0' + hexString;
-}
-
-and reverse the process with:
-
-yourNumber = parseInt(hexString, 16);
- 
- */

@@ -1,7 +1,6 @@
 import React from 'react'
 import {deletePaletteData} from '../../actions/protected-data'
 import {connect} from 'react-redux';
-//import "../../../public/icons/icons8-cancel-white.png"
 
 
 export class ExitIcon extends React.Component{
@@ -10,7 +9,6 @@ export class ExitIcon extends React.Component{
         super(props);
 
         this.state = {
-            //paletteId:props.paletteId,
             hover:false
         };
 
@@ -18,7 +16,6 @@ export class ExitIcon extends React.Component{
 
 
     onClickDelete(id){
-        console.log("ON CLICK DELETE ID: ", id);
         this.props.dispatch(deletePaletteData(id));
         window.location = '/dashboard';
     }

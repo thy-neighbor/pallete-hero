@@ -13,14 +13,14 @@ export const apiPostPalette = (input) => (dispatch) =>{
     }) 
 };
 
-//gets the first palette generated
+//loading state while palette is loading
 export const SET_LOADING = "SET_LOADING";
 export const setLoading = (loading) =>({
     type: SET_LOADING,
     loading
 });
 
-//Sets the Palette color across every component with any change,
+//Sets a Palette brick color 
 export const SET_PALETTE = "SET_PALETTE";
 export const setPalette = (itemId,itemColor) =>({
     type: SET_PALETTE,
@@ -28,13 +28,14 @@ export const setPalette = (itemId,itemColor) =>({
     itemColor
 });
 
-//Sets the Palette color across every component with any change,
+//Sets the Palette color across every component and locks them all
 export const SET_FULL_PALETTE = "SET_FULL_PALETTE";
 export const setFullPalette = (rgb) =>({
     type: SET_FULL_PALETTE,
     rgb
 });
 
+//Sets edit state which either locks whole palette or doesnt
 export const SET_EDIT_STATE = "SET_EDIT_STATE";
 export const setEditState = (bool) =>({
     type: SET_EDIT_STATE,
@@ -48,6 +49,7 @@ export const generatePalette = (rgb) => ({
     rgb
 });
 
+//lock a specific palette brick
 export const LOCK_PALETTE_BRICK = "LOCK_PALETTE_BRICK";
 export const lockPaletteBrick = (itemId,isLocked) => ({
     type: LOCK_PALETTE_BRICK,
@@ -55,6 +57,7 @@ export const lockPaletteBrick = (itemId,isLocked) => ({
     isLocked
 });
 
+//switches the position of 2 palette bricks
 export const SWAP_PALETTE_BRICK = "SWAP_PALETTE_BRICK";
 export const swapPaletteBrick = (curr,target) => ({
     type: SWAP_PALETTE_BRICK,

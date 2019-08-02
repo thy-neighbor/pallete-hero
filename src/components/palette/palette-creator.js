@@ -10,8 +10,6 @@ import { setPalette, generatePalette, lockPaletteBrick, apiPostPalette, setLoadi
 export class Palette extends React.Component{
 
     componentDidMount(){
-        //initial load of the palette creator
-        //if(!this.props.myInput.includes("N"))
         if(window.location.pathname!=="/dashboard")
         {
             var data = {
@@ -25,13 +23,12 @@ export class Palette extends React.Component{
     }
 
     onColorChange(itemId,itemColor){
-        //console.log("Palette-Creator.js inside of on Color Change");
-        //console.log("itemId",itemId,itemColor);
+
         this.props.dispatch(setPalette(itemId,itemColor));
     }
 
     onClickGeneratePalette(myInput){
-        //console.log("Inside onClickGeneratePalette");
+
         let bool=true;
         console.log("My Input in Palette Creator is: ", myInput );
         if(!myInput.includes("N")){
@@ -44,13 +41,10 @@ export class Palette extends React.Component{
 
         this.props.dispatch(setLoading(bool));
         this.props.dispatch(apiPostPalette(data));
-        //this.props.dispatch(generatePalette());
         
     }
 
     lockEvent(index,lockedBool){
-        //console.log("PALETTE CREATOR #",index," isLocked is",lockedBool);
-        //FIX the true when false dadaad, and add this to the reducer so we know what to lock
         this.props.dispatch(lockPaletteBrick(index,lockedBool));
     }
 

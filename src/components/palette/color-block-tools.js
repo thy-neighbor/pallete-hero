@@ -2,7 +2,7 @@ import React from 'react'
 import './palette.css'
 import { connect } from 'react-redux';
 import {swapPaletteBrick} from '../../actions/actions'
-//<a href="https://icons8.com/icon/15454/lock-filled">Lock Filled icon by Icons8</a>
+
 
 export class ColorBlockTools extends React.Component{
     
@@ -12,19 +12,12 @@ export class ColorBlockTools extends React.Component{
 
         this.state = {
 
-            //isLocked:false
             isLocked:this.props.edit,
             id:props.id
-            //MAKE SURE THAT THIS WORKS!!!!!!!
+            
         };
 
         this.clickLock = this.clickLock.bind(this);
-    }
-
-
-    componentDidMount() {
-
-        
     }
 
     clickLock(lockedBool){
@@ -34,24 +27,13 @@ export class ColorBlockTools extends React.Component{
             isLocked: lockedBool  //toggle for hiding 
 
         })); 
-
-        console.log("COLOR_BLOCK_TOOLS.JS lock Event function works", lockedBool);
+        
         this.props.onLock(lockedBool);
     }
 
     swap(current,target){
-        console.log("INSIDE SWAP FUNCTION: ", current,target);
         this.props.dispatch(swapPaletteBrick(current,target));
 
-
-        //this needs to happen to the one that it switches with
-        //so i need a way to check earlier on, maybe inside of 
-        //map state to props
-/*         let is=this.props.lockedArray[this.props.id]!=='N';
-
-        this.setState({
-            isLocked:is
-        }); */
     }
 
     lockCheck(id){
